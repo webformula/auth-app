@@ -1,0 +1,17 @@
+<mdw-card style="width: 320px; margin: 0 auto;">
+  <div class="mdw-card__content">
+    <h6 style="margin: 0 auto;">forgot password</h6>
+    <p>You will be sent an email with a link to reset your password</p>
+  </div>
+
+  <div class="mdw-card__content">
+    <mdw-textfield>
+      <label>Email</label>
+      <input id="email" type="email">
+    </mdw-textfield>
+  </div>
+
+  <div class="mdw-card__actions" style="justify-content: space-around;">
+    <mdw-button mdw-async class="mdw-raised mdw-primary" onclick="activePage.requestResetPassword(this)">Send</mdw-button>
+  </div>
+</mdw-card>

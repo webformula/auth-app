@@ -1,0 +1,31 @@
+<mdw-card style="width: 320px; margin: 0 auto;">
+  <div class="mdw-card__content">
+    <h6 style="margin: 0 auto;">Welcome</h6>
+    <mdw-icon style="font-size: 72px; align-self: center;">security</mdw-icon>
+  </div>
+
+  <div class="mdw-card__content">
+    <mdw-textfield>
+      <label>Identifier</label>
+      <input id="identifier">
+
+    </mdw-textfield>
+  
+    <mdw-textfield style="margin-top: 24px; margin-bottom: 42px">
+      <label>Password</label>
+      <input id="password" type="password">
+
+      <mdw-icon id="password-is-not-visible" onclick="activePage.togglePasswordVisibility()">visibility</mdw-icon>
+      <mdw-icon id="password-is-visible" style="display: none;;" onclick="activePage.togglePasswordVisibility()">visibility_off</mdw-icon>
+    </mdw-textfield>
+  </div>
+
+  <div class="mdw-card__actions mdw-row" mdw-flex-position="end">
+    <mdw-button id="login" mdw-async class="mdw-raised mdw-primary" onclick="activePage.sendLogin(this)">Login</mdw-button>
+  </div>
+
+  <div class="mdw-card__actions mdw-row" mdw-flex-position="space-between">
+    <mdw-button href="#/create-reset-password">forgot password?</mdw-button>
+    <mdw-button href="#/register">Register</mdw-button>
+  </div>
+</mdw-card>

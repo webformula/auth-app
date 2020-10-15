@@ -1,0 +1,31 @@
+<mdw-card style="width: 320px; margin: 0 auto;">
+  <div class="mdw-card__content">
+    <h6 style="margin: 0 auto;">Reset password</h6>
+  </div>
+
+  <div class="mdw-card__content">
+    <mdw-textfield style="margin-top: 24px; margin-bottom: 42px">
+      <label>Temp password</label>
+      <input id="temp-password" type="text">
+    </mdw-textfield>
+
+
+    <mdw-textfield style="margin-top: 24px; margin-bottom: 42px">
+      <label>New password</label>
+      <input id="password" type="password">
+    
+      <mdw-icon id="password-is-not-visible" onclick="activePage.togglePasswordVisibility()">visibility</mdw-icon>
+      <mdw-icon id="password-is-visible" style="display: none;;" onclick="activePage.togglePasswordVisibility()">
+        visibility_off</mdw-icon>
+    </mdw-textfield>
+    
+    <mdw-textfield style="margin-top: 24px; margin-bottom: 42px">
+      <label>Re-enter Password</label>
+      <input id="password-2" type="password">
+    </mdw-textfield>
+  </div>
+
+  <div class="mdw-card__actions" style="justify-content: space-around;">
+    <mdw-button mdw-async class="mdw-raised mdw-primary" onclick="activePage.saveNewPassword(this)">Save</mdw-button>
+  </div>
+</mdw-card>

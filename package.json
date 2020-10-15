@@ -1,0 +1,29 @@
+{
+  "name": "auth-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "snowpack dev",
+    "setup": "snowpack install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webformula/auth-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webformula/auth-app/issues"
+  },
+  "homepage": "https://github.com/webformula/auth-app#readme",
+  "dependencies": {
+    "@webformula/pax-components": "^0.14.0-beta",
+    "@webformula/pax-core": "^0.13.3"
+  },
+  "devDependencies": {
+    "@snowpack/plugin-run-script": "^2.1.5",
+    "nodemon": "^2.0.4",
+    "snowpack": "^2.14.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "mount": {
+    "app": "/",
+    "../pax-request": "/pax-request"
+  },
+  "install": [
+    "@webformula/pax-core",
+    "@webformula/pax-components"
+  ],
+  "plugins": [
+    [
+      "@snowpack/plugin-run-script",
+      {
+        "cmd": "node --experimental-modules buildEntry.mjs",
+        "watch": "nodemon -x $1"
+      }
+    ]
+  ]
+}

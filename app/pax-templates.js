@@ -1,0 +1,5 @@
+/* eslint-disable quotes */
+/* eslint-disable no-template-curly-in-string */
+window._templates = {
+  "pages/login/page.html": "<mdw-card>\n  <div class=\"mdw-card__content\">\n    <h6>Welcome</h6>\n    <mdw-icon style=\"font-size: 102px; align-self: center;\">security</mdw-icon>\n  </div>\n\n  <div class=\"mdw-card__content\">\n    <mdw-textfield>\n      <label>Identifier</label>\n      <input id=\"identifier\" required>\n  \n      <mdw-textfield-helper>\n        <mdw-helper-text validation>Required</mdw-helper-text>\n      </mdw-textfield-helper>\n    </mdw-textfield>\n  \n    <mdw-textfield style=\"margin-top: 24px; margin-bottom: 42px\">\n      <label>Password</label>\n      <input id=\"password\" type=\"password\" required>\n  \n      <mdw-textfield-helper>\n        <mdw-helper-text validation>Required</mdw-helper-text>\n      </mdw-textfield-helper>\n    </mdw-textfield>\n  </div>\n\n  <div class=\"mdw-card__actions\" style=\"justify-content: space-around;\">\n    <mdw-button id=\"login\" mdw-async class=\"mdw-raised mdw-primary\" >Login</mdw-button>\n    <mdw-button>Register</mdw-button>\n  </div>\n</mdw-card>\n"
+};
