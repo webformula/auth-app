@@ -4,6 +4,8 @@ import { resetPassword } from '../../modules/auth.js';
 export default class ResetPassword extends Page {
   constructor() {
     super();
+
+    this.bound_onInput = this.onInput.bind(this);
   }
 
   get title() {
@@ -20,6 +22,24 @@ export default class ResetPassword extends Page {
 
   get passwordInput2() {
     return document.querySelector('#password-2');
+  }
+
+  addEvents() {
+    this.passwordInput2.addEventListener('input', this.bound_onInput);
+  }
+
+  removeEvents() {
+    this.passwordInput2.removeEventListener('input', this.bound_onInput);
+  }
+
+  onInput() {
+    if (this.passwordInput.value !== this.passwordInput2.value) {
+      this.passwordInput2.setCustomValidity('passwords do not match');
+      this.passwordInput2.parentNode.classList.add('mdw-invalid');
+    } else {
+      this.passwordInput2.setCustomValidity('');
+      this.passwordInput2.parentNode.classList.remove('mdw-invalid');
+    }
   }
 
   togglePasswordVisibility() {
@@ -44,10 +64,7 @@ export default class ResetPassword extends Page {
 
   async saveNewPassword(button) {
     if (button.pending) return;
-
-    if (this.passwordInput.value !== this.passwordInput2.value) {
-      alert('passwords do not match');
-
+    if (!this.tempPasswordInput.validity.valid || !this.passwordInput.validity.valid || !this.passwordInput2.validity.valid) {
       setTimeout(() => {
         button.resolve();
       }, 0);

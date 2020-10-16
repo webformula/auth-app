@@ -37,6 +37,12 @@ export default class Login extends Page {
 
   async sendLogin(button) {
     if (button.pending) return;
+    if (!this.identifierInput.validity.valid || !this.passwordInput.validity.valid) {
+      setTimeout(() => {
+        button.resolve();
+      }, 0);
+      return;
+    }
 
     try {
       await login(this.identifierInput.value, this.passwordInput.value, localStorage.getItem('deviceToken'));

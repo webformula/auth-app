@@ -20,6 +20,12 @@ export default class Verification extends Page {
 
   async sendVerification(button) {
     if (button.pending) return;
+    if (!this.codeInput.validity.valid) {
+      setTimeout(() => {
+        button.resolve();
+      }, 0);
+      return;
+    }
     
     try {
       await verifyDevice(this.codeInput.value, this.rememberInput.checked);

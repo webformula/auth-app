@@ -7,7 +7,11 @@
   <div class="mdw-card__content">
     <mdw-textfield>
       <label>code</label>
-      <input id="code">
+      <input id="code" required minlength="6">
+
+      <mdw-textfield-helper>
+        <mdw-helper-text validation>requires 6 digit code</mdw-helper-text>
+      </mdw-textfield-helper>
     </mdw-textfield>
 
     <span>

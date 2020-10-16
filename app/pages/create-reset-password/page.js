@@ -16,12 +16,11 @@ export default class CreateResetPassword extends Page {
 
   async requestResetPassword(button) {
     if (button.pending) return;
-
-    if (!this.emailInput.value) {
-      alert('requires email');
+    if (!this.emailInput.validity.valid) {
       setTimeout(() => {
         button.resolve();
       }, 0);
+      return;
     }
 
     try {
@@ -34,7 +33,6 @@ export default class CreateResetPassword extends Page {
   }
 
   template() {
-    console.log('pages/create-reset-password/page.html');
     return 'pages/create-reset-password/page.html';
   }
 }
