@@ -1,27 +1,27 @@
 import request from '/pax-request/src/instancer.js';
 
-request.baseUrl = 'http://localhost:3201';
-
-const redirectLink = '';
-
 export async function login(identifier, password, deviceToken) {
   try {
     const response = await request
-      .post('login')
+      .post(`${window.tokenIssuerUrl}/login`)
       .data({
         identifier,
         password,
         deviceToken
       })
+      .credentials()
       .send();
 
     if (response.data.token) {
       localStorage.setItem('token', response.data.token);
       window.location = '#/verification';
     }
+    if (response.data.refreshToken) {
+      localStorage.setItem('refreshToken', response.data.refreshToken);
+    }
     if (response.data.accessToken) {
       localStorage.setItem('accessToken', response.data.accessToken);
-      window.location = redirectLink;
+      window.location = window.redirectLink;
     }
   } catch (e) {
     localStorage.removeItem('deviceToken');
@@ -31,7 +31,7 @@ export async function login(identifier, password, deviceToken) {
 
 export async function register(identifier, password) {
   const response = await request
-    .post('register')
+    .post(`${window.tokenIssuerUrl}/register`)
     .data({
       identifier,
       password,
@@ -44,7 +44,7 @@ export async function verifyDevice(code, rememberDevice = false) {
 
   try {
     const response = await request
-      .post('twoFactorVerification')
+      .post(`${window.tokenIssuerUrl}/twoFactorVerification`)
       .data({
         code,
         token: localStorage.getItem('token'),
@@ -55,7 +55,8 @@ export async function verifyDevice(code, rememberDevice = false) {
     localStorage.removeItem('token');
     localStorage.setItem('accessToken', response.data.accessToken);
     localStorage.setItem('deviceToken', response.data.deviceToken);
-    window.location = redirectLink;
+    localStorage.setItem('refreshToken', response.data.refreshToken);
+    window.location = window.redirectLink;
   } catch (e) {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('deviceToken');
@@ -64,7 +65,7 @@ export async function verifyDevice(code, rememberDevice = false) {
 
 export async function createResetPassword(email) {
   const response = await request
-    .post('create-reset-password')
+    .post(`${window.tokenIssuerUrl}/create-reset-password`)
     .data({
       email
     })
@@ -75,7 +76,7 @@ export async function createResetPassword(email) {
 
 export async function resetPassword(tempPassword, newPassword) {
   const response = await request
-    .post('reset-password')
+    .post(`${window.tokenIssuerUrl}/reset-password`)
     .data({
       tempPassword,
       newPassword

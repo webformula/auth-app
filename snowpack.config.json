@@ -1,12 +1,9 @@
 {
   "mount": {
+    "test-app": "/test",
     "app": "/",
     "../pax-request": "/pax-request"
   },
-  "install": [
-    "@webformula/pax-core",
-    "@webformula/pax-components"
-  ],
   "plugins": [
     [
       "@snowpack/plugin-run-script",
