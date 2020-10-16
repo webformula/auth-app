@@ -1,30 +1,32 @@
-<mdw-card style="width: 320px; margin: 0 auto;">
-  <div class="mdw-card__content">
-    <h6 style="margin: 0 auto;">Register</h6>
-  </div>
+<div class="mdw-column" mdw-flex-position="center" style="margin-top: 80px;">
+  <mdw-card style="width: 320px;">
+    <div class="mdw-card__content">
+      <h5 style="margin: 4px; margin-top: 12px;">Create account</h5>
+    </div>
 
-  <div class="mdw-card__content">
-    <mdw-textfield>
-      <label>Email</label>
-      <input id="identifier">
-    </mdw-textfield>
-  
-    <mdw-textfield style="margin-top: 24px; margin-bottom: 42px">
-      <label>Password</label>
-      <input id="password" type="password">
+    <div class="mdw-card__content">
+      <mdw-textfield>
+        <label>Email</label>
+        <input id="identifier">
+      </mdw-textfield>
+    
+      <mdw-textfield style="margin-top: 24px;">
+        <label>Password</label>
+        <input id="password" type="password">
 
-      <mdw-icon id="password-is-not-visible" onclick="activePage.togglePasswordVisibility()">visibility</mdw-icon>
-      <mdw-icon id="password-is-visible" style="display: none;;" onclick="activePage.togglePasswordVisibility()">visibility_off</mdw-icon>
-    </mdw-textfield>
+        <mdw-icon id="password-is-not-visible" onclick="activePage.togglePasswordVisibility()">visibility</mdw-icon>
+        <mdw-icon id="password-is-visible" style="display: none;;" onclick="activePage.togglePasswordVisibility()">visibility_off</mdw-icon>
+      </mdw-textfield>
 
-    <mdw-textfield style="margin-top: 24px; margin-bottom: 42px">
-      <label>Re-enter Password</label>
-      <input id="password-2" type="password">
-    </mdw-textfield>
-  </div>
+      <mdw-textfield>
+        <label>Re-enter Password</label>
+        <input id="password-2" type="password">
+      </mdw-textfield>
+    </div>
 
-  <div class="mdw-card__actions" style="justify-content: space-around;">
-    <mdw-button id="register" mdw-async class="mdw-raised mdw-primary" onclick="activePage.sendRegistration(this)">register</mdw-button>
-    <mdw-button href="#/login">Login</mdw-button>
-  </div>
-</mdw-card>
+    <div class="mdw-card__actions" style="justify-content: space-around;">
+      <mdw-button href="#/login">cancel</mdw-button>
+      <mdw-button id="register" mdw-async class="mdw-raised mdw-primary" onclick="activePage.sendRegistration(this)">Create account</mdw-button>
+    </div>
+  </mdw-card>
+</div>

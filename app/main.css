@@ -1,0 +1,5 @@
+.sub-link {
+  text-decoration: none;
+  color: var(--mdw-theme-primary);
+  font-weight: bold;
+}
