@@ -28,6 +28,7 @@ export default async function setup({
   _accessTokenKey = accessTokenKey || 'accessToken';
 
   const valid = await validateAuth();
+
   if (!valid) {
     const params = encodeURIComponent(btoa(`b=${_tokenServiceUrl}&r=${_redirectUrl}`));
     window.location = `${_authAppURL}?p=${params}`;

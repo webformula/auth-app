@@ -11,9 +11,7 @@ export async function login(identifier, password) {
     })
   })
   .then(response => response.json());
-
-  console.log('after');
-  
+  console.log(response);
   if (response.requiresVerification) {
     window.location = '#/verification';
   } else {
@@ -38,6 +36,7 @@ export async function register(identifier, password) {
 export async function verifyDevice(code, rememberDevice = false) {
   await fetch(`${window.tokenIssuerUrl}/twoFactorVerification`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -46,6 +45,7 @@ export async function verifyDevice(code, rememberDevice = false) {
       rememberDevice
     })
   });
+  window.location = window.redirectLink;
 }
 
 export async function createResetPassword(email) {

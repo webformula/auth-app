@@ -1,10 +1,9 @@
 import setup from './auth.js';
 
 setup({
-  authURL: 'http://localhost:8080/',
-  tokenIssuerUrl: 'http://localhost:3201',
-  refreshUrl: 'http://localhost:3201/refresh',
-  redirectUrl: 'http://localhost:8080/test'//window.location
+  authAppURL: 'http://localhost:8080/',
+  tokenServiceUrl: 'http://localhost:3201',
+  refreshPath: 'refresh',
+  logoutPath: 'logout',
+  redirectUrl: window.location
 });
-
-// import './component/entry.js';
