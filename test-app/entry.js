@@ -6,3 +6,5 @@ setup({
   refreshUrl: 'http://localhost:3201/refresh',
   redirectUrl: 'http://localhost:8080/test'//window.location
 });
+
+// import './component/entry.js';

@@ -14,7 +14,11 @@ export default async function setup({
   _accessTokenKey = accessTokenKey || 'accessToken';
   _refreshTokenKey = refreshTokenKey || 'refreshToken';
   const valid = await validateAuth();
-  if (!valid) window.location = `${authURL}?b=${tokenIssuerUrl}&r=${redirectUrl}`;
+
+  if (!valid) {
+    const params = encodeURIComponent(btoa(`b=${tokenIssuerUrl}&r=${redirectUrl}`));
+    window.location = `${authURL}?p=${params}`;
+  }
 }
 
 async function validateAuth() {
@@ -47,7 +51,7 @@ async function validateAuth() {
 }
 
 function decode(token = '') {
-  if (!token) return null;
+  if (!token || token === 'undefined') return null;
   const base64Url = token.split('.')[1];
   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
   const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {

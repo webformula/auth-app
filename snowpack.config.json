@@ -1,8 +1,7 @@
 {
   "mount": {
     "test-app": "/test",
-    "app": "/",
-    "../pax-request": "/pax-request"
+    "app": "/"
   },
   "plugins": [
     [
