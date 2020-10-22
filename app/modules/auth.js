@@ -11,7 +11,6 @@ export async function login(identifier, password) {
     })
   })
   .then(response => response.json());
-  console.log(response);
   if (response.requiresVerification) {
     window.location = '#/verification';
   } else {
