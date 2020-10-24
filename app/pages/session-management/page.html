@@ -1,0 +1,31 @@
+<div class="mdw-column" mdw-flex-position="center" style="margin-top: 80px;">
+  <mdw-card style="max-width: 720px; width: 100%;">
+    <div class="mdw-card__content mdw-row" mdw-flex-position="space-between center">
+      <h5 style="margin: 4px; margin-top: 12px;">Session management</h5>
+      <mdw-button mdw-async id="logout-session" disabled onclick="activePage.logoutSession()">logout session</mdw-button>
+    </div>
+
+    <div class="mdw-card__content">
+      <mdw-list id="session-list" mdw-select="multiple" mdw-select-onclick="" class="mdw-two-line" onchange="activePage.updateSelection(this.selected)">
+        ${activePage.sessions.map(({ id, ip_address, country, region, city }) => `
+          <mdw-list-item>
+            <mdw-icon>person</mdw-icon>
+            <div class="mdw-list-item__text">
+              <div class="mdw-list-item__primary-text">
+                <b>${id}</b>
+              </div>
+              <div class="mdw-list-item__secondary-text">
+                <span>${ip_address}</span>
+                <span>${country}</span>
+                <span>${region}</span>
+                <span>${city}</span>
+              </div>
+            </div>
+            <mdw-checkbox class="mdw-list-item__meta"></mdw-checkbox>
+            <div class="mdw-ripple mdw-list-item-ripple"></div>
+          </mdw-list-item>
+        `).join('\n')}
+      </mdw-list>
+    </div>
+  </mdw-card>
+</div>

@@ -71,3 +71,23 @@ export async function resetPassword(tempPassword, newPassword) {
     })
   });
 }
+
+export async function getSessions() {
+  const data = await fetch(`${window.tokenIssuerUrl}/get-sessions`, {
+    method: 'GET',
+    credentials: 'include'
+  });
+  return data.json();
+}
+
+export async function logoutSession(sessionIds) {
+  await fetch(`${window.tokenIssuerUrl}/clear-sessions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      sessionIds
+    })
+  });
+}
