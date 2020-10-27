@@ -83,6 +83,7 @@ export async function getSessions() {
 export async function logoutSession(sessionIds = []) {
   await fetch(`${window.tokenIssuerUrl}/clear-sessions`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
     },
