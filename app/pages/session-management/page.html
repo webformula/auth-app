@@ -7,12 +7,12 @@
 
     <div class="mdw-card__content">
       <mdw-list id="session-list" mdw-select="multiple" mdw-select-onclick="" class="mdw-two-line" onchange="activePage.updateSelection(this.selected)">
-        ${activePage.sessions.map(({ id, ip_address, country, region, city }) => `
+        ${activePage.sessions.map(({ id, ip_address, country, region, city, created_at, current }) => `
           <mdw-list-item>
             <mdw-icon>person</mdw-icon>
             <div class="mdw-list-item__text">
               <div class="mdw-list-item__primary-text">
-                <b>${id}</b>
+                <b>${created_at} ${current ? '(current)' : ''}</b>
               </div>
               <div class="mdw-list-item__secondary-text">
                 <span>${ip_address}</span>

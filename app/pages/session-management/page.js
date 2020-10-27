@@ -30,13 +30,11 @@ export default class SessionManagement extends Page {
     if (this.logoutSessionButton.pending) return;
     
     const indexes = this.sessionList.selected;
-    const selected = indexes.map(i => this.sessions[i]);
-    console.log(indexes);
-    console.log(selected);
-    // await logoutSession(selected);
+    const selected = indexes.map(i => this.sessions[i].id);
+    await logoutSession(selected);
 
-    // this.sessions = await getSessions();
-    // this.render();
+    this.sessions = await getSessions();
+    this.render();
   }
 
   updateSelection(selected) {
