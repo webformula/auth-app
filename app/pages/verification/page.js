@@ -22,7 +22,7 @@ export default class Verification extends Page {
     return document.querySelector('#submit-button');
   }
 
-  async sendVerification(button) {
+  async sendVerification() {
     const button = this.submitButton;
 
     // prevent this from being called multiple times when method is in progress
