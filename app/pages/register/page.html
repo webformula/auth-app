@@ -26,7 +26,7 @@
         </mdw-textfield-helper>
       </mdw-textfield>
 
-      <mdw-textfield>
+      <mdw-textfield onkeyup="event.key === 'Enter' && activePage.sendRegistration()">
         <label>Re-enter Password</label>
         <input id="password-2" type="password" required>
 
@@ -38,7 +38,7 @@
 
     <div class="mdw-card__actions" style="justify-content: space-around;">
       <mdw-button href="#/login">cancel</mdw-button>
-      <mdw-button id="register" mdw-async class="mdw-raised mdw-primary" onclick="activePage.sendRegistration(this)">Create account</mdw-button>
+      <mdw-button id="register" mdw-async class="mdw-raised mdw-primary" onclick="activePage.sendRegistration()">Create account</mdw-button>
     </div>
   </mdw-card>
 </div>

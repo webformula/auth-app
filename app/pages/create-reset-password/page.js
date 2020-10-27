@@ -14,8 +14,19 @@ export default class CreateResetPassword extends Page {
     return document.querySelector('#email');
   }
 
-  async requestResetPassword(button) {
+  get submitButton() {
+    return document.querySelector('#submit-button');
+  }
+
+  async requestResetPassword() {
+    const button = this.submitButton;
+    
+    // prevent this from being called multiple times when method is in progress
     if (button.pending) return;
+
+    // put button into pending state. This is needed because the user can hit enter in the last textfield to trigger this
+    if (!button.pending) button.asyncClick();
+    
     if (!this.emailInput.validity.valid) {
       setTimeout(() => {
         button.resolve();

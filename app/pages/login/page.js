@@ -18,6 +18,10 @@ export default class Login extends Page {
     return document.querySelector('#password');
   }
 
+  get submitButton() {
+    return document.querySelector('#login');
+  }
+
   togglePasswordVisibility() {
     const _passwordInput = this.passwordInput;
     const _isNotVisible = document.querySelector('#password-is-not-visible');
@@ -35,8 +39,15 @@ export default class Login extends Page {
     }
   }
 
-  async sendLogin(button) {
+  async sendLogin() {
+    const button = this.submitButton;
+
+    // prevent this from being called multiple times when method is in progress
     if (button.pending) return;
+
+    // put button into pending state. This is needed because the user can hit enter in the last textfield to trigger this
+    if (!button.pending) button.asyncClick();
+
     if (!this.identifierInput.validity.valid || !this.passwordInput.validity.valid) {
       setTimeout(() => {
         button.resolve();

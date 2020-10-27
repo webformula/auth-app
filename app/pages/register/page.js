@@ -24,6 +24,10 @@ export default class Registration extends Page {
     return document.querySelector('#password-2');
   }
 
+  get submitButton() {
+    return document.querySelector('#register');
+  }
+
   addEvents() {
     this.passwordInput2.addEventListener('input', this.bound_onInput);
   }
@@ -62,8 +66,15 @@ export default class Registration extends Page {
     }
   }
 
-  async sendRegistration(button) {
+  async sendRegistration() {
+    const button = this.submitButton;
+    
+    // prevent this from being called multiple times when method is in progress
     if (button.pending) return;
+
+    // put button into pending state. This is needed because the user can hit enter in the last textfield to trigger this
+    if (!button.pending) button.asyncClick();
+    
     if (!this.identifierInput.validity.valid || !this.passwordInput.validity.valid || !this.passwordInput2.validity.valid) {
       setTimeout(() => {
         button.resolve();

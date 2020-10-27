@@ -18,8 +18,19 @@ export default class Verification extends Page {
     return document.querySelector('#remember');
   }
 
+  get submitButton() {
+    return document.querySelector('#submit-button');
+  }
+
   async sendVerification(button) {
+    const button = this.submitButton;
+
+    // prevent this from being called multiple times when method is in progress
     if (button.pending) return;
+
+    // put button into pending state. This is needed because the user can hit enter in the last textfield to trigger this
+    if (!button.pending) button.asyncClick();
+
     if (!this.codeInput.validity.valid) {
       setTimeout(() => {
         button.resolve();

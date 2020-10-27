@@ -16,7 +16,7 @@
         </mdw-textfield-helper>
       </mdw-textfield>
     
-      <mdw-textfield style="margin-top: 24px; margin-bottom: 42px">
+    <mdw-textfield style="margin-top: 24px; margin-bottom: 42px" onkeyup="event.key === 'Enter' && activePage.sendLogin()">
         <label>Password</label>
         <input id="password" type="password" required>
 
@@ -32,7 +32,7 @@
 
     <div class="mdw-card__actions mdw-row" mdw-flex-position="space-between">
       <mdw-button href="#/register">Create account</mdw-button>
-      <mdw-button id="login" mdw-async class="mdw-raised mdw-primary" onclick="activePage.sendLogin(this)">Login</mdw-button>
+      <mdw-button id="login" mdw-async class="mdw-raised mdw-primary" onclick="activePage.sendLogin()">Login</mdw-button>
     </div>
   </mdw-card>
 </div>

@@ -6,7 +6,7 @@
     </div>
 
     <div class="mdw-card__content">
-      <mdw-textfield>
+      <mdw-textfield onkeyup="event.key === 'Enter' && activePage.requestResetPassword()">
         <label>Email</label>
         <input id="email" type="email" required>
 
@@ -18,7 +18,7 @@
 
     <div class="mdw-card__actions mdw-row" mdw-flex-position="space-between">
       <mdw-button href="#/login">cancel</mdw-button>
-      <mdw-button mdw-async class="mdw-raised mdw-primary" onclick="activePage.requestResetPassword(this)">Send code</mdw-button>
+      <mdw-button id="submit-button" mdw-async class="mdw-raised mdw-primary" onclick="activePage.requestResetPassword()">Send code</mdw-button>
     </div>
   </mdw-card>
 </div>
