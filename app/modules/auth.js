@@ -1,5 +1,25 @@
+export async function handleAccountableState() {
+  const response = await fetch(`${localStorage.getItem('tokenIssuerUrl')}/account-state`, {
+    method: 'GET',
+    credentials: 'include'
+  }).then(response => response.json());
+
+  if (!response.state) throw Error('no retrievable state');
+  
+  switch (response.state.code) {
+    case 0: // authorized
+      if (localStorage.getItem('redirectLink')) window.location = localStorage.getItem('redirectLink');
+
+    case 1: // unauthorized. needs to login / register
+    case 2: // needs access token. can hit refresh endpoint to resolve
+    case 3: // not capable of re-auth. has an invalid refresh token. Once the access token expires, a login is required
+    default:
+      if (window.location.hash !== '' && window.location.hash !== '#/') window.location = '/';
+  }
+}
+
 export async function login(identifier, password) {
-  const response = await fetch(`${window.tokenIssuerUrl}/login`, {
+  const response = await fetch(`${localStorage.getItem('tokenIssuerUrl')}/login`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -14,12 +34,12 @@ export async function login(identifier, password) {
   if (response.requiresVerification) {
     window.location = '#/verification';
   } else {
-    window.location = window.redirectLink;
+    window.location = localStorage.getItem('redirectLink');
   }
 }
 
 export async function register(identifier, password) {
-  await fetch(`${window.tokenIssuerUrl}/register`, {
+  await fetch(`${localStorage.getItem('tokenIssuerUrl')}/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -33,7 +53,7 @@ export async function register(identifier, password) {
 }
 
 export async function verifyDevice(code, rememberDevice = false) {
-  await fetch(`${window.tokenIssuerUrl}/twoFactorVerification`, {
+  await fetch(`${localStorage.getItem('tokenIssuerUrl')}/twoFactorVerification`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -44,11 +64,11 @@ export async function verifyDevice(code, rememberDevice = false) {
       rememberDevice
     })
   });
-  window.location = window.redirectLink;
+  window.location = localStorage.getItem('redirectLink');
 }
 
 export async function createResetPassword(email) {
-  await fetch(`${window.tokenIssuerUrl}/create-reset-password`, {
+  await fetch(`${localStorage.getItem('tokenIssuerUrl')}/create-reset-password`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -60,7 +80,7 @@ export async function createResetPassword(email) {
 }
 
 export async function resetPassword(tempPassword, newPassword) {
-  await fetch(`${window.tokenIssuerUrl}/create-reset-password`, {
+  await fetch(`${localStorage.getItem('tokenIssuerUrl')}/create-reset-password`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -73,7 +93,7 @@ export async function resetPassword(tempPassword, newPassword) {
 }
 
 export async function getSessions() {
-  const data = await fetch(`${window.tokenIssuerUrl}/get-sessions`, {
+  const data = await fetch(`${localStorage.getItem('tokenIssuerUrl')}/get-sessions`, {
     method: 'GET',
     credentials: 'include'
   });
@@ -81,7 +101,7 @@ export async function getSessions() {
 }
 
 export async function logoutSession(sessionIds = []) {
-  await fetch(`${window.tokenIssuerUrl}/clear-sessions`, {
+  await fetch(`${localStorage.getItem('tokenIssuerUrl')}/clear-sessions`, {
     method: 'POST',
     credentials: 'include',
     headers: {
